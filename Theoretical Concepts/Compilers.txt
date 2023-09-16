@@ -1,0 +1,12 @@
+**Compiler:**
+
+1. **Compilation Step:** A compiler translates the entire JavaScript source code into an intermediate form or directly into machine code before execution. This typically involves a separate compilation step before execution begins.
+
+2. **Optimized Execution:** Compilers have more opportunities for optimization, such as dead code elimination, constant folding, and function inlining. This can lead to faster execution of frequently used code.
+
+3. **Potentially Slower Start:** The compilation step can introduce a delay before code execution begins because the entire codebase needs to be compiled first. However, modern JIT (Just-In-Time) compilers aim to minimize this delay by compiling hot code paths on-the-fly.
+
+4. **Improved Error Detection:** Compilation often involves static analysis of the code, which can catch certain types of errors (e.g., syntax errors, type errors) before execution begins. This can lead to better error messages during development.
+
+5. **Less Portability:** Compiled code may be less portable because it is specific to the target platform. In the context of JavaScript, this is not typically a concern as JavaScript is designed to be platform-independent.
+

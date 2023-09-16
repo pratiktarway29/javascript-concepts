@@ -1,0 +1,46 @@
+`Promise.allSettled()` is a JavaScript method that takes an iterable of promises as input and returns a single promise that is fulfilled with an array of result objects when all the input promises have either fulfilled or rejected, regardless of their outcomes. This means it will not short-circuit like `Promise.all()`, which immediately rejects if any of the input promises reject. Instead, `Promise.allSettled()` waits for all promises to settle, and then provides information about each promise's status and result.
+
+Each result object in the array will have two properties:
+
+1. `status`: A string that can be one of the following values:
+   - `"fulfilled"`: Indicates that the promise was fulfilled.
+   - `"rejected"`: Indicates that the promise was rejected.
+
+2. `value` or `reason`: Depending on the `status`:
+   - `value`: If the promise was fulfilled, this property contains the fulfillment value.
+   - `reason`: If the promise was rejected, this property contains the rejection reason.
+
+Here's an example of how to use `Promise.allSettled()`:
+
+```javascript
+const promises = [
+  Promise.resolve(42),
+  Promise.reject("Error occurred"),
+  Promise.resolve("Hello, world!"),
+];
+
+Promise.allSettled(promises)
+  .then((results) => {
+    results.forEach((result, index) => {
+      if (result.status === "fulfilled") {
+        console.log(`Promise ${index + 1} was fulfilled with value: ${result.value}`);
+      } else {
+        console.log(`Promise ${index + 1} was rejected with reason: ${result.reason}`);
+      }
+    });
+  })
+  .catch((error) => {
+    console.error("Error in Promise.allSettled():", error);
+  });
+```
+
+In this example, we have an array of three promises. Even though the second promise is rejected, `Promise.allSettled()` doesn't reject immediately. Instead, it collects information about all the promises and logs the status and result/reason for each of them once all promises have settled.
+
+Output:
+```
+Promise 1 was fulfilled with value: 42
+Promise 2 was rejected with reason: Error occurred
+Promise 3 was fulfilled with value: Hello, world!
+```
+
+As shown in the output, `Promise.allSettled()` provides information about all the promises, including those that were rejected, allowing you to handle them individually. This can be useful when you want to perform some action regardless of whether any promises were rejected.

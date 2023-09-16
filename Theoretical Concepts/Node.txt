@@ -1,0 +1,1 @@
+Node.js is a JavaScript runtime environment that allows developers to execute JavaScript code on the server-side, enabling the development of scalable and high-performance web applications.

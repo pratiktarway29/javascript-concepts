@@ -1,0 +1,107 @@
+Hoisting is a behavior in JavaScript that allows variable and function declarations to be moved to the top of their containing scope during the compilation phase. This means that in your JavaScript code, even if you declare a variable or function later in the code, it will behave as if it has been declared at the beginning of its containing scope. However, it's important to note that only the declarations are hoisted, not the initializations or assignments.
+
+Here are a few key points to understand about hoisting:
+
+1. Variable Hoisting:
+   When you declare a variable using the `var` keyword, the declaration is hoisted to the top of its containing function or global scope. For example:
+
+   ```javascript
+   console.log(x); // undefined
+   var x = 5;
+   ```
+
+   In this code, the variable `x` is hoisted to the top of its containing scope, so it exists but is undefined until the assignment statement is encountered.
+
+2. Function Hoisting:
+   Function declarations, including named and anonymous functions declared using the `function` keyword, are also hoisted to the top of their containing scope. For example:
+
+   ```javascript
+   foo(); // "Hello, world!"
+   
+   function foo() {
+       console.log("Hello, world!");
+   }
+   ```
+
+   In this code, the function `foo` is hoisted, so it can be called before its actual declaration in the code.
+
+3. Hoisting Order:
+   When both variables and functions are declared in the same scope, function declarations are hoisted first, followed by variable declarations. This means that if there are both variable and function declarations with the same name in the same scope, the function declaration will take precedence:
+
+   ```javascript
+   var x = 10;
+   
+   function x() {
+       console.log("This is a function declaration.");
+   }
+   
+   console.log(x); // 10
+   ```
+
+   In this case, the variable `x` is hoisted, but the function declaration of `x` takes precedence, so `x` refers to the function, not the variable.
+
+It's important to be aware of hoisting in JavaScript, as it can sometimes lead to unexpected behavior if you are not careful with variable and function declarations in your code. To avoid confusion and improve code readability, it's a good practice to declare variables and functions at the top of their containing scope and avoid relying on hoisting. Additionally, consider using `let` and `const` instead of `var` for variable declarations, as they have block-level scope and can help mitigate some of the issues associated with hoisting.
+
+
+
+___________________________-
+
+In JavaScript, both functions and variables are hoisted, meaning their declarations are moved to the top of their containing scope during the compilation phase. However, there is a key difference in how they are hoisted, which explains why functions are not `undefined` while variables often are.
+
+1. Function Declarations:
+   Function declarations are fully hoisted. This means that not only is the name of the function hoisted to the top of its containing scope, but the entire function definition is also hoisted. As a result, you can call a function declared using the `function` keyword before its actual declaration in the code, and it will work as expected. Here's an example:
+
+   ```javascript
+   foo(); // This works because the entire function is hoisted.
+   
+   function foo() {
+       console.log("Hello, world!");
+   }
+   ```
+
+   In this case, the function `foo` is hoisted, and you can call it even before its declaration.
+
+2. Variable Declarations (using `var`):
+   Variable declarations using `var` are hoisted as well, but there's a difference in how they are initialized. When a variable is hoisted, only the declaration is moved to the top of the scope, and the variable is automatically initialized with the value `undefined`. This is why variables declared with `var` are initially `undefined` until they are explicitly assigned a value. Here's an example:
+
+   ```javascript
+   console.log(x); // undefined
+   var x = 5;
+   ```
+
+   In this code, the variable `x` is hoisted, but it's initialized with `undefined`, so when you try to log its value before the assignment, it displays `undefined`.
+
+This distinction between functions and variables when it comes to hoisting is due to the design of the JavaScript language. Function declarations are treated as special cases and hoisted with their complete definition, allowing them to be used before their actual placement in the code. Variable declarations, on the other hand, are hoisted with an automatic `undefined` initialization, which is why they may appear as `undefined` until they are assigned a value.
+
+It's worth noting that this behavior is specific to `var` declarations. Variables declared with `let` and `const` also exhibit hoisting but have a "temporal dead zone" where they are not accessible before their declaration in the code, preventing potential issues related to accessing uninitialized variables.
+
+
+____________________________________
+
+The Temporal Dead Zone (TDZ) is a concept in JavaScript introduced with the `let` and `const` variable declarations. It represents a phase in the code where a variable declared with `let` or `const` exists in the scope but cannot be accessed or used before its declaration statement. Attempting to access a variable within its TDZ results in a runtime error.
+
+Here's a breakdown of how the Temporal Dead Zone works:
+
+1. **Variable Declaration:** When you declare a variable with `let` or `const`, it's hoisted to the top of its containing block or function, just like with `var` declarations. However, there's a crucial difference.
+
+2. **Temporal Dead Zone (TDZ):** Starting from the beginning of the block where the variable is declared, until the actual declaration statement is encountered, the variable is said to be in the Temporal Dead Zone. During this phase, attempting to access the variable will result in a `ReferenceError`. This is because the variable exists in the scope but has not been initialized yet.
+
+   ```javascript
+   console.log(x); // ReferenceError: Cannot access 'x' before initialization
+   let x = 10;
+   ```
+
+   In this example, `x` is in the Temporal Dead Zone before the `let x = 10;` statement, and trying to access it results in an error.
+
+3. **Initialization:** Once the code execution reaches the `let` or `const` declaration statement, the variable is initialized, and it can be accessed and used normally from that point onward.
+
+   ```javascript
+   let x = 10;
+   console.log(x); // 10
+   ```
+
+   Here, `x` is initialized with the value `10`, and you can safely access it.
+
+The Temporal Dead Zone was introduced to address some of the issues related to variable hoisting with `var`, where variables were hoisted and initialized with `undefined`, potentially leading to unexpected behavior. With `let` and `const`, JavaScript aims to provide more predictable and safer variable behavior by enforcing that variables are only used after they've been declared and initialized.
+
+It's important to be aware of the Temporal Dead Zone when working with `let` and `const` declarations and to declare variables in the appropriate order in your code to avoid runtime errors.

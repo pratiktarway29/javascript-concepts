@@ -1,0 +1,79 @@
+In JavaScript, threads are not natively supported like in some other programming languages. JavaScript is single-threaded by default, meaning it executes one piece of code at a time in a single sequence. This is because JavaScript was initially designed to run in web browsers, where it handles tasks like user interface updates, event handling, and asynchronous operations using a single main thread.
+
+However, you can achieve concurrency in JavaScript through techniques like Web Workers and asynchronous programming. Let's explore both of these concepts with examples:
+
+1. Asynchronous Programming (Callbacks, Promises, and Async/Await):
+
+JavaScript uses asynchronous programming to perform tasks without blocking the main thread. This allows for non-blocking operations like network requests and file I/O. Here's an example using callbacks, Promises, and Async/Await:
+
+```javascript
+// Using Callbacks
+function fetchDataWithCallback(callback) {
+  setTimeout(() => {
+    callback("Data received");
+  }, 1000);
+}
+
+fetchDataWithCallback((data) => {
+  console.log(data);
+});
+
+// Using Promises
+function fetchDataWithPromise() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Data received");
+    }, 1000);
+  });
+}
+
+fetchDataWithPromise()
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+// Using Async/Await
+async function fetchDataWithAsyncAwait() {
+  try {
+    const data = await fetchDataWithPromise();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+fetchDataWithAsyncAwait();
+```
+
+2. Web Workers:
+
+Web Workers are a way to run JavaScript code in a separate thread, allowing for true parallelism. Web Workers are typically used in web applications to perform heavy computations or background tasks without blocking the main UI thread. Here's a basic example:
+
+```javascript
+// main.js
+const worker = new Worker("worker.js");
+
+worker.onmessage = function (e) {
+  console.log("Message from worker: ", e.data);
+};
+
+worker.postMessage("Hello from the main thread!");
+
+// worker.js
+self.onmessage = function (e) {
+  console.log("Message from main thread: ", e.data);
+
+  // Simulate some work
+  const result = e.data + " - Processed in the worker thread";
+  
+  // Send the result back to the main thread
+  self.postMessage(result);
+};
+```
+
+In this example, the main thread communicates with a separate worker thread using the `postMessage` method, and the worker thread responds with results.
+
+Remember that JavaScript itself doesn't provide low-level thread management like some other languages, and Web Workers are still subject to limitations like no access to the DOM and a need for serialized data when communicating between threads. However, they can be a useful tool for achieving concurrency in web applications.

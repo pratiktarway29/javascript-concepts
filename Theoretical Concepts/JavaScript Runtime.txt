@@ -1,0 +1,32 @@
+A JavaScript runtime is an essential component of the JavaScript ecosystem that allows you to execute JavaScript code on a computer or device. It provides the necessary environment for JavaScript code to run, including managing memory, handling asynchronous operations, and interacting with the host environment (such as web browsers or server environments). Here are the key aspects of a JavaScript runtime:
+
+1. **Execution Environment:** A JavaScript runtime provides the execution environment where JavaScript code is interpreted and executed. This environment includes various components like the JavaScript engine, memory heap, call stack, and event loop.
+
+2. **JavaScript Engine:** The JavaScript engine is at the core of a runtime. It's responsible for parsing JavaScript code, compiling it into a lower-level representation, and executing it. Different environments (e.g., web browsers and Node.js) have their own JavaScript engines (e.g., V8 for Chrome, SpiderMonkey for Firefox, and Node.js uses V8 too).
+
+3. **Memory Management:** The runtime manages memory allocation and deallocation for objects and variables in your JavaScript code. It tracks memory usage and helps prevent memory leaks by removing objects that are no longer in use.
+
+4. **Call Stack:** The call stack is a data structure that keeps track of function calls in your code. When a function is called, a new entry (called a "stack frame") is added to the stack. When a function returns, its stack frame is removed. This stack helps control the flow of your program.
+
+5. **Event Loop:** The event loop is a critical component for handling asynchronous operations in JavaScript. It constantly checks the call stack and the message queue for pending tasks. When the call stack is empty, the event loop picks tasks from the queue and executes them, allowing JavaScript to handle non-blocking I/O operations like AJAX requests and timers.
+
+6. **Host Environment Interaction:** JavaScript runtimes interact with the host environment. For example, in a web browser, the runtime can access the Document Object Model (DOM) to manipulate web page elements and respond to user interactions. In Node.js, it can interact with the file system and network.
+
+7. **Runtime APIs:** Runtimes provide a set of APIs that allow JavaScript code to perform various operations, such as reading and writing files, making network requests, and interacting with hardware devices (in environments like IoT applications).
+
+8. **Error Handling:** The runtime includes error handling mechanisms to catch and handle exceptions, preventing the program from crashing due to unexpected errors.
+
+In summary, a JavaScript runtime is the infrastructure that enables JavaScript code to run effectively and interact with its host environment. It manages various aspects of code execution, memory, and asynchronous operations, ensuring that your JavaScript applications can work seamlessly in different environments like web browsers and server-side applications.
+
+
+
+# JavaScript Runtime 
+ - JavaScript Runtime Environment
+   - JavaScript Engine
+     - Call Stack
+     - Memory Heap
+   - Web APIs
+   - Event Loop
+   - Callback Queue
+
+

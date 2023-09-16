@@ -1,0 +1,12 @@
+**Interpreter:**
+
+1. **Execution Line by Line:** An interpreter reads and executes JavaScript code line by line, interpreting each line as it encounters it. This means that it can start executing code almost immediately after parsing, without the need for a separate compilation step.
+
+2. **No Intermediate Code:** Interpreters typically do not generate intermediate machine code or bytecode. They directly execute the source code, which can make debugging easier because error messages are usually related to the original source code.
+
+3. **Slower Execution:** Because interpreters execute code directly, they are generally slower compared to compilers for frequently executed code. This can lead to decreased performance, especially in complex applications.
+
+4. **Portability:** Interpreted languages are often more portable because they do not generate platform-specific machine code. JavaScript, as an interpreted language in web browsers, can run on various platforms without modification.
+
+5. **Dynamic Typing:** Interpreters often support dynamic typing, allowing variables to change types during runtime. This flexibility can be useful but can also lead to runtime errors that might be harder to catch during development.
+

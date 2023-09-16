@@ -1,0 +1,1 @@
+A stack overflow error in JavaScript occurs when there are too many function calls piled up on the call stack. Each time a function is called, it gets added to the stack. When a function completes, it is removed from the stack. If you have too many nested or recursive function calls without a proper exit condition, the stack can grow too large and lead to an error.

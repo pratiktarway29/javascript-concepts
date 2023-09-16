@@ -1,0 +1,53 @@
+In JavaScript, a job queue is a mechanism used to manage and execute asynchronous tasks or functions in a specific order. It ensures that tasks are executed one after another, typically in a first-in, first-out (FIFO) manner. Job queues are commonly used in environments like web browsers to handle tasks such as handling user interface events, making network requests, and executing timers.
+
+One of the most common job queues in JavaScript is the Event Loop, which includes two main components: the Callback Queue (also known as the Task Queue) and the Microtask Queue (also known as the Promise Queue). Tasks in the Callback Queue are executed after the current execution stack is empty, while tasks in the Microtask Queue have higher priority and are executed before the Callback Queue.
+
+Here's an example to illustrate how a job queue works in JavaScript:
+
+```javascript
+console.log("Start");
+
+// Using setTimeout to simulate an asynchronous task
+setTimeout(function () {
+  console.log("Task 1");
+}, 1000);
+
+console.log("Middle");
+
+// Another asynchronous task using Promise
+Promise.resolve()
+  .then(function () {
+    console.log("Task 2");
+  })
+  .then(function () {
+    console.log("Task 3");
+  });
+
+console.log("End");
+```
+
+Output:
+```
+Start
+Middle
+End
+Task 2
+Task 3
+Task 1
+```
+
+In this example:
+
+1. `"Start"`, `"Middle"`, and `"End"` are logged to the console first as part of the main execution stack.
+
+2. The `setTimeout` function schedules `"Task 1"` to be executed after a 1-second delay. This goes into the Callback Queue.
+
+3. The Promise resolves and adds `"Task 2"` and `"Task 3"` to the Microtask Queue. These tasks have higher priority than those in the Callback Queue.
+
+4. Once the main execution stack is empty (after logging `"End"`), the event loop checks the Microtask Queue and executes `"Task 2"` and `"Task 3"`.
+
+5. Finally, `"Task 1"` is executed from the Callback Queue.
+
+This demonstrates how job queues, specifically the Microtask Queue and the Callback Queue, help manage the order of execution for asynchronous tasks in JavaScript.
+
+It's important to note that different JavaScript environments (e.g., browsers, Node.js) may have slightly different implementations of job queues and event loops, but the concept remains largely the same.

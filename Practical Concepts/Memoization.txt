@@ -1,0 +1,32 @@
+Memoization is a technique used in computer programming to optimize the performance of functions by caching their results. In JavaScript, it's commonly used to store the results of expensive function calls so that they can be reused instead of recalculating them every time the function is called with the same inputs.
+
+Here's a short example of memoization in JavaScript:
+
+```javascript
+// A simple function to calculate the nth Fibonacci number without memoization
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(40)); // This will be very slow for large values of n
+
+// Now, let's implement the same function with memoization
+const memo = {};
+function fibonacciMemoized(n) {
+  if (n <= 1) return n;
+
+  // Check if the result is already cached
+  if (memo[n] !== undefined) {
+    return memo[n];
+  }
+
+  // If not, calculate the result and cache it
+  memo[n] = fibonacciMemoized(n - 1) + fibonacciMemoized(n - 2);
+  return memo[n];
+}
+
+console.log(fibonacciMemoized(40)); // This will be much faster
+```
+
+In this example, the `fibonacciMemoized` function uses a `memo` object to store the results of previous calculations. Before calculating a new Fibonacci number, it checks if the result for that specific `n` is already in the `memo` object. If it is, it returns the cached result; otherwise, it calculates the result, caches it, and returns it. This significantly improves the performance of the Fibonacci function for large values of `n`.

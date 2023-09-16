@@ -1,0 +1,42 @@
+A Shared Worker in JavaScript is a type of web worker that allows multiple instances of a web page or browser window to communicate and collaborate by running code in a separate background thread. Unlike regular web workers (dedicated workers), which run in isolation for each instance of a web page, shared workers are designed to be shared among multiple instances of the same origin (i.e., pages from the same website).
+
+Here are some key points to understand about Shared Workers:
+
+1. **Shared Execution Context:** Shared Workers run in a shared execution context. This means that multiple tabs or windows of the same website can communicate with and send messages to a single shared worker, allowing them to coordinate and share data.
+
+2. **Global Scope:** Shared Workers have access to the global scope, just like regular JavaScript code running in a web page. This allows them to maintain shared state and variables across multiple instances of the web page.
+
+3. **Communication:** Shared Workers communicate with the main thread (the JavaScript running in the web page) and other shared workers using a messaging system. You can use the `postMessage` method to send messages to a shared worker and listen for messages using the `onmessage` event handler.
+
+4. **Lifetime:** Shared Workers have a longer lifecycle compared to dedicated workers. They are created when the first page or tab connects to them and continue running until all connections to them are closed. This makes them suitable for long-running background tasks and maintaining shared state.
+
+Here's a basic example of how to use a Shared Worker:
+
+```javascript
+// In the main page script
+const sharedWorker = new SharedWorker('shared-worker.js');
+
+sharedWorker.port.onmessage = function (event) {
+  const message = event.data;
+  console.log('Main page received message:', message);
+};
+
+sharedWorker.port.postMessage('Hello from the main page!');
+
+// In shared-worker.js
+self.onconnect = function (event) {
+  const port = event.ports[0];
+
+  port.onmessage = function (event) {
+    const message = event.data;
+    console.log('Shared Worker received message:', message);
+
+    // Send a response back to the main page
+    port.postMessage('Hello from the Shared Worker!');
+  };
+};
+```
+
+In this example, the main page and the Shared Worker communicate by sending and receiving messages through the `postMessage` method and the `onmessage` event handler. The Shared Worker runs the code defined in the `shared-worker.js` script and maintains a connection with the main page for message exchange.
+
+Shared Workers are useful for scenarios where you need to share data, state, or perform background processing across multiple tabs or windows of a web application.

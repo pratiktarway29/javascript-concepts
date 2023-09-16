@@ -1,0 +1,150 @@
+Certainly! Here's a comprehensive list of cases that highlight the differences between strict mode and non-strict mode in JavaScript, along with descriptions and examples for each case:
+
+1. Variable Declaration:
+
+   - Description: In non-strict mode, you can create variables without declaring them using the `var` keyword, and they become global variables. In strict mode, variables must be declared with `var`, `let`, or `const`. Attempting to use an undeclared variable results in a reference error.
+
+   ```javascript
+   // Non-Strict Mode
+   undeclaredVar = 42; // Creates a global variable 'undeclaredVar'
+   
+   // Strict Mode
+   "use strict";
+   undeclaredVar = 42; // Throws a ReferenceError: undeclaredVar is not defined
+   ```
+
+2. Global Object:
+
+   - Description: In non-strict mode, assigning a value to an undeclared variable creates a property on the global object (usually `window` in browsers). In strict mode, variables declared in the global scope do not become properties of the global object.
+
+   ```javascript
+   // Non-Strict Mode
+   console.log(this === window); // true
+   
+   // Strict Mode
+   "use strict";
+   console.log(this === window); // false
+   ```
+
+3. Assignment Restrictions:
+
+   - Description: In non-strict mode, assignments to read-only properties and variables are allowed without errors. In strict mode, attempting to assign a value to a read-only property or variable results in a TypeError.
+
+   ```javascript
+   // Non-Strict Mode
+   var readOnly = 10;
+   Object.defineProperty(window, 'readOnly', { value: 20 });
+   console.log(readOnly); // 20 (changes the global variable)
+   
+   // Strict Mode
+   "use strict";
+   var readOnly = 10;
+   Object.defineProperty(window, 'readOnly', { value: 20 }); // Throws a TypeError
+   ```
+
+4. Function Scope:
+
+   - Description: In non-strict mode, variables declared without `var`, `let`, or `const` in a function become global variables. In strict mode, variables declared without `var`, `let`, or `const` in a function are scoped to that function.
+
+   ```javascript
+   // Non-Strict Mode
+   function nonStrictScope() {
+     undeclaredVar = 42; // Creates a global variable 'undeclaredVar'
+   }
+   
+   // Strict Mode
+   "use strict";
+   function strictScope() {
+     undeclaredVar = 42; // Throws a ReferenceError: undeclaredVar is not defined
+   }
+   ```
+
+5. Octal Literals:
+
+   - Description: In non-strict mode, octal literals (e.g., `0123`) are allowed and interpreted as octal values. In strict mode, octal literals are not allowed; they result in a syntax error.
+
+   ```javascript
+   // Non-Strict Mode
+   var octalNumber = 0123; // Allowed and interpreted as octal (83 in decimal)
+   
+   // Strict Mode
+   "use strict";
+   var octalNumber = 0123; // Throws a SyntaxError
+   ```
+
+6. Duplicate Parameter Names:
+
+   - Description: In non-strict mode, functions can have duplicate parameter names without errors. In strict mode, duplicate parameter names in functions result in a syntax error.
+
+   ```javascript
+   // Non-Strict Mode
+   function nonStrictDuplicate(a, a) {
+     return a + a; // No error, 'a' refers to the second parameter
+   }
+   
+   // Strict Mode
+   "use strict";
+   function strictDuplicate(a, a) {
+     return a + a; // Throws a SyntaxError: Duplicate parameter name not allowed
+   }
+   ```
+
+7. Reserved Keywords:
+
+   - Description: In non-strict mode, you can use certain reserved keywords as variable or function names without errors. In strict mode, using reserved keywords as variable or function names results in a syntax error.
+
+   ```javascript
+   // Non-Strict Mode
+   var private = "secret"; // Allowed
+   
+   // Strict Mode
+   "use strict";
+   var private = "secret"; // Throws a SyntaxError: Unexpected strict mode reserved word
+   ```
+
+8. `this` Keyword:
+
+   - Description: In non-strict mode, the value of `this` inside a function can refer to the global object in certain cases. In strict mode, the value of `this` inside a function is `undefined` in functions not called as methods.
+
+   ```javascript
+   // Non-Strict Mode
+   function nonStrictThis() {
+     return this; // Refers to the global object (e.g., window in browsers)
+   }
+   
+   // Strict Mode
+   "use strict";
+   function strictThis() {
+     return this; // Refers to 'undefined' in non-method functions
+   }
+   ```
+
+9. Deleting Variables:
+
+   - Description: In non-strict mode, you can delete variables without errors. In strict mode, attempting to delete local variables is not allowed and results in a syntax error.
+
+   ```javascript
+   // Non-Strict Mode
+   var nonStrictVar = 10;
+   delete nonStrictVar; // Allowed
+   
+   // Strict Mode
+   "use strict";
+   var strictVar = 10;
+   delete strictVar; // Throws a SyntaxError: Deleting local variables is not allowed
+   ```
+
+10. Octal Escape Sequences in Strings:
+
+    - Description: In non-strict mode, octal escape sequences in strings (e.g., `\045`) are allowed and interpreted. In strict mode, octal escape sequences in strings are not allowed and result in a syntax error.
+
+    ```javascript
+    // Non-Strict Mode
+    var octalString = "\045"; // Allowed (octal escape sequence interpreted)
+    
+    // Strict Mode
+    "use strict";
+    var octalString = "\045"; // Throws a SyntaxError: Octal escape sequences are not allowed
+    ```
+
+These examples illustrate the key differences between strict mode and non-strict mode in JavaScript, emphasizing how strict mode enforces stricter rules to catch potential errors and promote better coding practices.

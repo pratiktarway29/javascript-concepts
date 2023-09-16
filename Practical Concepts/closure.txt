@@ -2,9 +2,8 @@ In JavaScript, a closure is a fundamental concept that occurs when a function is
 
 Here's an explanation of closures using examples:
 
-1. **Basic Closure:**
+1. Basic Closure:
    
-   ```javascript
    function outerFunction() {
      const outerVariable = 'I am from outerFunction';
      
@@ -17,15 +16,13 @@ Here's an explanation of closures using examples:
    
    const closure = outerFunction();
    closure(); // This will log "I am from outerFunction"
-   ```
+   
 
    In this example, `outerFunction` defines `innerFunction` inside it and returns it. When `outerFunction` is called and assigned to `closure`, it retains access to `outerVariable`, even though `outerFunction` has finished executing. When you call `closure()`, it still knows about `outerVariable` and can access it.
 
-2. **Closure with Parameters:**
-
+2. Closure with Parameters:
    Closures can also capture and remember parameters passed to the outer function:
 
-   ```javascript
    function outerFunction(outerParam) {
      function innerFunction(innerParam) {
        console.log(outerParam + innerParam);
@@ -36,16 +33,16 @@ Here's an explanation of closures using examples:
    
    const closure = outerFunction(10);
    closure(5); // This will log "15"
-   ```
+   
 
    In this example, `closure` remembers the `outerParam` with a value of `10` even after `outerFunction` has completed, allowing you to provide `innerParam` when calling `closure`.
 
 Closures are commonly used in JavaScript for various purposes, including:
 
-- **Data Encapsulation and Information Hiding:** Closures allow you to create private variables and methods within a function, which cannot be accessed directly from outside. This helps in maintaining data integrity and preventing unwanted modifications.
+- Data Encapsulation and Information Hiding: Closures allow you to create private variables and methods within a function, which cannot be accessed directly from outside. This helps in maintaining data integrity and preventing unwanted modifications.
 
-- **Callbacks and Event Handling:** Closures are frequently used in asynchronous operations and event handling, where a function (callback) retains access to variables from its containing scope.
+- Callbacks and Event Handling: Closures are frequently used in asynchronous operations and event handling, where a function (callback) retains access to variables from its containing scope.
 
-- **Module Pattern:** Closures are used to create modules in JavaScript, which enable you to encapsulate and organize related functions and variables.
+- Module Pattern: Closures are used to create modules in JavaScript, which enable you to encapsulate and organize related functions and variables.
 
 Understanding closures is crucial for writing clean and efficient JavaScript code, especially when dealing with complex data structures, asynchronous code, and functional programming concepts.

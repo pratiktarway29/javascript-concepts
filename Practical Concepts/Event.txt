@@ -1,0 +1,119 @@
+In JavaScript, an event is a specific occurrence or interaction that happens within a web page or application. Events can be triggered by various actions or activities, such as a user clicking a button, moving the mouse, pressing a key on the keyboard, resizing the browser window, or even an element finishing loading. Events are an essential part of creating interactive and responsive web applications because they allow you to detect and respond to user actions or changes in the application's state.
+
+Here are some key concepts related to events in JavaScript:
+
+1. Event Types:
+   JavaScript supports a wide range of event types, including but not limited to:
+   - Mouse events: `click`, `mousedown`, `mouseup`, `mousemove`, `mouseenter`, `mouseleave`, etc.
+   - Keyboard events: `keydown`, `keyup`, `keypress`, etc.
+   - Form events: `submit`, `input`, `change`, etc.
+   - Document events: `DOMContentLoaded`, `load`, `unload`, etc.
+   - Custom events: You can also create and trigger custom events using the `CustomEvent` constructor.
+
+2. Event Targets:
+   Events are associated with specific HTML elements, which are referred to as event targets. When an event occurs, it typically happens on a specific element (e.g., a button, input field, or the entire document). You can access the target element that triggered the event using the `event.target` property.
+
+3. Event Listeners:
+   To respond to events, you can attach event listeners to HTML elements. Event listeners are JavaScript functions that are executed when a specific event occurs on an element. You can add event listeners using methods like `addEventListener` and remove them using `removeEventListener`.
+
+   Example of adding an event listener to a button click:
+   ```javascript
+   const button = document.getElementById('myButton');
+   button.addEventListener('click', function(event) {
+       // Your code to handle the click event goes here
+   });
+   ```
+
+4. Event Object:
+   When an event occurs, JavaScript passes an event object to the event handler function. This object contains information about the event, such as its type, the target element, mouse coordinates, and keyboard key codes. You can access this information within the event handler function.
+
+   Example of accessing event properties:
+   ```javascript
+   button.addEventListener('click', function(event) {
+       console.log('Event type:', event.type);
+       console.log('Target element:', event.target);
+   });
+   ```
+
+5. Event Propagation:
+   Events in the DOM tree propagate in two phases: capturing phase and bubbling phase. During the capturing phase, the event travels from the root of the tree to the target element, and during the bubbling phase, it travels back up from the target element to the root. You can control the phase in which you want to capture the event by passing a `true` or `false` third argument to `addEventListener`.
+
+   Example of capturing phase:
+   ```javascript
+   element.addEventListener('click', handler, true);
+   ```
+
+6. Preventing Default Behavior:
+   Some events have default behaviors associated with them (e.g., clicking a link navigates to a new page). You can prevent the default behavior using the `event.preventDefault()` method to implement custom behavior.
+
+   Example of preventing a form submission:
+   ```javascript
+   form.addEventListener('submit', function(event) {
+       event.preventDefault(); // Prevents the form from submitting
+       // Your custom form handling code goes here
+   });
+   ```
+
+Events play a crucial role in building interactive and dynamic web applications in JavaScript. They enable you to create responsive user interfaces by allowing your code to react to user interactions and external changes in the application's environment.
+
+
+# Events types:
+
+1. Mouse events
+2. Keyboard events
+3. HTML form events
+4. Document events
+5. Window events
+6. Custom events
+
+# Mouse events
+1. click
+2. dblclick
+3. mousedown
+4. mouseup
+5. mousemove
+6. mouseover
+7. mouseout
+8. contextmenu
+9. wheel
+
+# Keyboard events
+1. keydown
+2. keyup
+3. keypress
+4. input
+5. change
+6. focus
+7. blur
+8. cut
+9. copy
+10. paste
+11. compositionstart
+12. compositionupdate
+13. compositionend
+14. beforeinput
+15. textInput
+
+# HTML form events
+1. onblur
+2. onchange
+3. oncontextmenu
+4. onfocus
+5. oninput
+6. oninvalid
+7. onreset
+8. onsearch
+9. onselect
+10. onsubmit
+
+# Document events
+1. `DOMContentLoaded`
+2. `load`
+3. `beforeunload`
+4. `unload`
+5. `readystatechange`
+6. `visibilitychange`
+7. `selectionchange`
+8. `fullscreenchange`
+9. `fullscreenerror`
+

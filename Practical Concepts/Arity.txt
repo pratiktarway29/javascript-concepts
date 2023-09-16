@@ -1,0 +1,63 @@
+In JavaScript, "arity" refers to the number of arguments or parameters that a function can accept. It helps you determine how many arguments you can or should pass to a function when calling it. Arity is primarily relevant when you're defining and working with functions.
+
+JavaScript functions can have one of the following arities:
+
+1. Nullary Function (arity 0): A nullary function accepts no arguments. You can call it without providing any parameters.
+
+   ```javascript
+   function nullaryFunction() {
+     // Function code with no parameters
+   }
+
+   nullaryFunction(); // Call with no arguments
+   ```
+
+2. Unary Function (arity 1): A unary function accepts one argument. You should pass exactly one parameter when calling it.
+
+   ```javascript
+   function unaryFunction(arg) {
+     // Function code with one parameter
+   }
+
+   unaryFunction(42); // Call with one argument
+   ```
+
+3. Binary Function (arity 2): A binary function accepts two arguments. You should pass exactly two parameters when calling it.
+
+   ```javascript
+   function binaryFunction(arg1, arg2) {
+     // Function code with two parameters
+   }
+
+   binaryFunction('hello', 'world'); // Call with two arguments
+   ```
+
+Functions can have higher arities as well, accepting more than two arguments. For example, a ternary function accepts three arguments, a quaternary function accepts four arguments, and so on. However, it's generally considered a good practice to keep the number of arguments to a minimum, as functions with too many parameters can become harder to understand and maintain.
+
+JavaScript also allows you to use the `arguments` object within a function to access all the arguments passed to it, regardless of the declared arity. This can be useful when dealing with functions that accept a variable number of arguments or when you want to create more flexible functions.
+
+Here's an example using the `arguments` object:
+
+```javascript
+function variableArityFunction() {
+  for (let i = 0; i < arguments.length; i++) {
+    console.log(arguments[i]);
+  }
+}
+
+variableArityFunction(1, 2, 3, 4); // Call with variable number of arguments
+```
+
+In modern JavaScript, you can also use the rest parameter syntax (`...`) to handle a variable number of arguments more elegantly:
+
+```javascript
+function variableArityFunction(...args) {
+  for (const arg of args) {
+    console.log(arg);
+  }
+}
+
+variableArityFunction(1, 2, 3, 4); // Call with variable number of arguments
+```
+
+In summary, "arity" in JavaScript refers to the number of arguments a function can accept, and it's essential to understand the arity of a function when calling it to ensure you pass the correct number of arguments.

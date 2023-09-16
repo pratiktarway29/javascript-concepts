@@ -1,0 +1,63 @@
+In JavaScript, `compose` and `pipe` are two higher-order functions often used in functional programming to create more readable and maintainable code when working with functions. They both help you combine multiple functions into a single function, but they differ in how they do it. Let's explore each of them with examples.
+
+1. **Compose:**
+
+The `compose` function takes a series of functions and returns a new function. When you call the returned function with an argument, it applies the series of functions in reverse order, passing the result of one function as the argument to the next.
+
+Here's an example:
+
+```javascript
+// Define some functions
+const addTwo = (x) => x + 2;
+const square = (x) => x * x;
+const subtractFive = (x) => x - 5;
+
+// Compose the functions
+const composedFunction = compose(subtractFive, square, addTwo);
+
+// Use the composed function
+const result = composedFunction(3); // equivalent to subtractFive(square(addTwo(3)))
+
+console.log(result); // Output: 16
+```
+
+In the above code, `composedFunction` is created by composing `subtractFive`, `square`, and `addTwo` functions. When you call `composedFunction(3)`, it executes the functions in reverse order: `addTwo(3)` => `square(5)` => `subtractFive(25)`, resulting in a final output of `16`.
+
+To implement the `compose` function:
+
+```javascript
+const compose = (...functions) => (arg) =>
+  functions.reduceRight((result, fn) => fn(result), arg);
+```
+
+2. **Pipe:**
+
+The `pipe` function is similar to `compose`, but it applies the functions in the order they are provided, passing the result of one function as the argument to the next function.
+
+Here's an example:
+
+```javascript
+// Define some functions
+const addTwo = (x) => x + 2;
+const square = (x) => x * x;
+const subtractFive = (x) => x - 5;
+
+// Pipe the functions
+const pipedFunction = pipe(addTwo, square, subtractFive);
+
+// Use the piped function
+const result = pipedFunction(3); // equivalent to subtractFive(square(addTwo(3)))
+
+console.log(result); // Output: 0
+```
+
+In the above code, `pipedFunction` is created by piping `addTwo`, `square`, and `subtractFive` functions. When you call `pipedFunction(3)`, it executes the functions in the order provided: `addTwo(3)` => `square(5)` => `subtractFive(25)`, resulting in a final output of `0`.
+
+To implement the `pipe` function:
+
+```javascript
+const pipe = (...functions) => (arg) =>
+  functions.reduce((result, fn) => fn(result), arg);
+```
+
+Both `compose` and `pipe` are useful for creating a flow of data through a series of functions in a clean and readable manner, depending on whether you want to apply the functions in a left-to-right or right-to-left order.

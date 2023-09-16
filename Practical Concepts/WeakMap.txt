@@ -1,0 +1,54 @@
+In JavaScript, a WeakMap is a built-in data structure that allows you to create a collection of key-value pairs where the keys are objects and the values can be arbitrary values. Unlike regular JavaScript objects or Maps, WeakMaps have some unique characteristics:
+
+1. **Weak References:** One of the most significant differences between WeakMaps and regular Maps is that the keys in a WeakMap are held as weak references. This means that the JavaScript garbage collector can potentially reclaim the keys if there are no other references to them, making them eligible for automatic memory management.
+
+2. **Privacy:** WeakMaps are designed for scenarios where you want to associate private data with an object without polluting the object itself or preventing its garbage collection. This makes them useful for libraries and frameworks that want to store data related to objects without interfering with the object's properties.
+
+Here's how you can create and use a WeakMap:
+
+### Creating a WeakMap
+
+```javascript
+const myWeakMap = new WeakMap();
+```
+
+### Setting and Getting Values
+
+You can set values in a WeakMap using the `set()` method and retrieve them using the `get()` method:
+
+```javascript
+const keyObject = {};
+const value = "Some private data";
+
+myWeakMap.set(keyObject, value);
+
+const retrievedValue = myWeakMap.get(keyObject);
+console.log(retrievedValue); // "Some private data"
+```
+
+### Checking for Existence
+
+You can check if a key exists in a WeakMap using the `has()` method:
+
+```javascript
+console.log(myWeakMap.has(keyObject)); // true
+```
+
+### Deleting Entries
+
+You can delete entries from a WeakMap using the `delete()` method:
+
+```javascript
+myWeakMap.delete(keyObject);
+console.log(myWeakMap.has(keyObject)); // false
+```
+
+### Use Cases for WeakMap
+
+1. **Private Data**: Storing private data associated with objects without exposing it as properties.
+
+2. **Memory Management**: Storing auxiliary data related to objects that should be garbage collected when the object is no longer referenced.
+
+3. **Caching**: Caching computed values for objects, where the cached values can be automatically cleaned up when the objects are no longer needed.
+
+Remember that while WeakMaps have their advantages, they also come with some limitations. WeakMap keys must be objects (not primitive values), and you cannot iterate over the keys or values directly. Additionally, WeakMaps are not enumerable, which means you cannot use methods like `Object.keys()` or `for...of` loops with them.

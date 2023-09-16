@@ -1,0 +1,1 @@
+TypeScript is needed to add strong static typing to JavaScript, which helps catch errors early in development and improves code maintainability and scalability.

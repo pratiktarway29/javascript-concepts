@@ -1,0 +1,47 @@
+
+**ES5 (2009):**
+1. Strict mode.
+2. JSON parsing support.
+3. `Array` methods like `forEach`, `map`, `filter`, `reduce`, etc.
+4. `Object.create` for prototype-based inheritance.
+5. `Function.prototype.bind` for setting the context of a function.
+
+**ES6 (2015):**
+1. Arrow functions.
+2. `let` and `const` for block-scoped variables.
+3. Classes and class inheritance.
+4. Template literals.
+5. Destructuring assignment.
+6. Default function parameters.
+7. Spread and rest operators.
+8. Promises for asynchronous programming.
+9. Modules using `import` and `export`.
+10. Maps and Sets for data structures.
+11. `for...of` loop.
+12. Symbols for creating unique values.
+13. Generators and the `yield` keyword.
+
+**ES7 (2016):**
+1. Exponentiation operator (`**`).
+2. Array includes method (`Array.prototype.includes()`).
+
+**ES8 (2017):**
+1. Async/await for more readable asynchronous code.
+2. Object.values() and Object.entries() for working with objects.
+3. String padding methods (`padStart` and `padEnd`).
+4. Shared Memory and Atomics for low-level multi-threading (WebAssembly).
+
+**ES10 (2019):**
+1. `Array.prototype.flat()` and `Array.prototype.flatMap()` methods.
+2. `String.prototype.trimStart()` and `String.prototype.trimEnd()` methods.
+3. `Object.fromEntries()` for creating objects from key-value pairs.
+4. `Array.prototype.sort()` improvements.
+5. Symbol.prototype.description for retrieving the description of a symbol.
+
+**ES11 (2020):**
+ES11 is also known as ECMAScript 2020.
+1. `BigInt` for working with arbitrarily large integers.
+2. Optional chaining (`?.`) for handling optional properties.
+3. Nullish coalescing (`??`) for handling default values more effectively.
+
+It's worth noting that ECMAScript versions beyond ES6 are sometimes referred to by their year of release, so ES11 is often called ES2020, ES12 as ES2021, and so on.

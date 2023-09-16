@@ -1,0 +1,89 @@
+Composition and inheritance are two fundamental concepts in object-oriented programming, including JavaScript, that help developers structure and organize their code. They offer different ways to achieve code reuse and build relationships between classes or objects. Let's explore both concepts with examples.
+
+### Composition:
+
+Composition is a design principle that emphasizes building complex objects by combining simpler objects or components. In JavaScript, this is often achieved by creating objects that have references to other objects (composition) rather than inheriting their properties and methods (inheritance).
+
+Here's an example of composition in JavaScript:
+
+```javascript
+// Define a simple "engine" object.
+const engine = {
+  start() {
+    console.log('Engine started');
+  },
+  stop() {
+    console.log('Engine stopped');
+  },
+};
+
+// Create a car that uses composition to incorporate the engine.
+const car = {
+  engine: engine,
+  drive() {
+    this.engine.start();
+    console.log('Car is moving');
+  },
+  park() {
+    this.engine.stop();
+    console.log('Car is parked');
+  },
+};
+
+// Use the car object.
+car.drive(); // Output: Engine started, Car is moving
+car.park();  // Output: Engine stopped, Car is parked
+```
+
+In this example, we have a `car` object that has a reference to an `engine` object. Composition allows us to build complex objects like `car` by combining simpler components (the `engine` in this case).
+
+Composition provides flexibility and allows you to reuse and assemble different components to create objects, which is often preferable to deep inheritance hierarchies.
+
+### Inheritance:
+
+Inheritance is another way to achieve code reuse, but it involves creating a new class (subclass or child class) that inherits properties and methods from an existing class (superclass or parent class). In JavaScript, you can use the `class` keyword to implement inheritance.
+
+Here's an example of inheritance in JavaScript:
+
+```javascript
+// Define a superclass "Vehicle."
+class Vehicle {
+  start() {
+    console.log('Vehicle started');
+  }
+  stop() {
+    console.log('Vehicle stopped');
+  }
+}
+
+// Create a subclass "Car" that inherits from "Vehicle."
+class Car extends Vehicle {
+  drive() {
+    this.start();
+    console.log('Car is moving');
+  }
+  park() {
+    this.stop();
+    console.log('Car is parked');
+  }
+}
+
+// Create an instance of the "Car" class.
+const myCar = new Car();
+
+// Use the car object.
+myCar.drive(); // Output: Vehicle started, Car is moving
+myCar.park();  // Output: Vehicle stopped, Car is parked
+```
+
+In this example, the `Car` class inherits the `start` and `stop` methods from the `Vehicle` class. Inheritance allows you to create a hierarchy of classes, but it can lead to tight coupling and make code harder to maintain if not used carefully.
+
+**Composition vs. Inheritance:**
+
+The choice between composition and inheritance depends on your specific use case:
+
+1. **Composition** is generally preferred when you want to build flexible, loosely coupled components. It allows you to reuse and combine smaller pieces of functionality in a more modular way.
+
+2. **Inheritance** is suitable when you have a clear hierarchy of objects, and you want to model an "is-a" relationship, where a subclass is a specialized version of the superclass. However, be cautious about deep and complex inheritance hierarchies, as they can make the code harder to understand and maintain.
+
+In practice, a combination of both composition and inheritance can be used to strike a balance between code reuse and maintainability, depending on the specific requirements of your project.
